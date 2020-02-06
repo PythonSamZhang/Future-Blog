@@ -40,15 +40,17 @@
             <span class="navbar-toggler-icon"></span>
           </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav">
+        <ul class="nav navbar-nav">
         <li class="nav-item">
           <a class="nav-link" href="/">首页</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/blog">博客</a>
         </li>
-      </ul>
-      <div class="container">
+        <li class="nav-item">
+          <a class="nav-link" href="/about">关于</a>
+        </li>
+        </ul>
       <ul class="nav navbar-nav navbar-right justify-content-end ml-auto">
         {% if current_user.is_authenticated %}
         &nbsp;&nbsp;
@@ -66,7 +68,7 @@
                   <a class="dropdown-item {% if current_user.dark_theme %}bg-dark text-light{% endif %}" href="{{ url_for('main.moderate') }}">管理评论</a>
                   {% endif %}
                   {% if current_user.can(Permission.ADMIN) %}
-                  <a class="dropdown-item {% if current_user.dark_theme %}bg-dark text-light{% endif %}" href="{{ url_for('main.admin') }}">管理网站</a>
+                  <a class="dropdown-item {% if current_user.dark_theme %}bg-dark text-light{% endif %}" href="{{ url_for('main.admin') }}">管理后台</a>
                   {% endif %}
                   {% if current_user.unread != 0 %}
                   <span class="dropdown-item {% if current_user.dark_theme %}bg-dark text-light{% endif %}">消息<span class="badge badge-primary">{{ current_user.unread }}</span></span>
@@ -78,7 +80,6 @@
         <a class="nav-link" href="{{ url_for('main.login') }}">登录</a>  <a class="nav-link" href="{{ url_for('main.register') }}">注册</a>
         {% endif %}
     </ul>
-    </div>
   </ul>
 
 </p>

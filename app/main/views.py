@@ -587,4 +587,8 @@ def search():
     print(posts)
 
     return render_template('search.html', posts=posts, keyword=keyword, pagination=pagination)
+
+@main.route('/about/')
+def about():
+    return render_template('about.html')
     
