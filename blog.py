@@ -4,6 +4,7 @@ from flask_migrate import Migrate
 from flask_login import current_user
 from app.main.models import *
 from datetime import timedelta
+from flask_migrate import upgrade, migrate, init
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 migrate = Migrate(app, db)
@@ -16,6 +17,9 @@ def before_request():
         current_user.ping()
 
 def deploy():
+    init()
+    migrate()
+    upgrade()
     Role.insert_roles()
     Category.default_categories()
     u = User(username='root', password='rootroot', unread=0, role=Role.query.filter_by(name='Admin').first(), email='adminemail@example.com')
