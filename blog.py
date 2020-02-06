@@ -16,6 +16,7 @@ def before_request():
     if current_user.is_authenticated:
         current_user.ping()
 
+@app.cli.command()
 def deploy():
     init()
     migrate()
