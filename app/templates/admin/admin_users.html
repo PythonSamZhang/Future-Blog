@@ -1,0 +1,41 @@
+{% extends "admin/admin_base.html" %}
+
+{% block title %}STComix - Users{% endblock %}
+{% block admin_content %}
+<div class="container">
+<div class="page-header">
+    <h1>用户管理</h1>
+</div>
+有{{ query.count() }}名已注册的用户
+<table class="table table-hover admin-users">
+    <thead><tr><th>用户</th><th>博客数</th><th>邮箱</th><th>角色</th><th>注册时间</th><th> </th></tr></thead>
+    {% for user in users %}
+    <tr>
+        <td>
+            <a href="{{ url_for('main.user', username = user.username) }}">
+                <img class="rounded-circle" src="{{ user.gravatar(size=32) }}">
+                {{ user.username }}
+            </a>
+        </td>
+        <td>
+            <small><a href="/admin/users/posts/{{ user.id }}/"><i class="fa fa-eye text-primary"></i></a></small>
+            {{ user.posts.count() }}
+        </td>
+        <td>
+            <a href="mailto: {{ user.email }}">{{ user.email }}</a>
+        </td>
+        <td>
+            <small><a href="/admin/users/edit-roles/{{ user.id }}/"><i class="fa fa-edit text-primary"></i></a></small>
+            {{ user.role.name }}
+        </td>
+        <td>{{ moment(user.member_since).format('LL') }}</td>
+        <td>
+            <a href="/admin/users/remove_con/{{ user.id }}">
+               <i class="fa fa-trash text-primary"></i>
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+</div>
+{% endblock %}

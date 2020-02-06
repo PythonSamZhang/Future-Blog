@@ -1,0 +1,32 @@
+{% extends 'admin/admin_base.html' %}
+
+{% block title %}STComix Admin - Posts{% endblock %}
+
+{% block admin_header %}Future Blog - {{ user.username }}发表的博客{% endblock %}
+
+{% block admin_content %}
+<div class="page-header">
+    <h1>{{ user.username }}发表的博客</h1>
+</div>
+<div class="container">
+    用户{{ user.username }}发表了{{ user.posts.count() }}篇博客
+    <table class="table table-hover admin-users">
+        <thead><tr><th>作者</th><th>标题</th><th>发表时间</th><th> </th></tr></thead>
+        {% for post in posts %}
+        <tr>
+            <td>
+                <a href="{{ url_for('.post', id = post.id) }}">
+                    <img class="rounded-circle" src="{{ user.gravatar(size=32) }}">
+                    {{ user.username }}
+                </a>
+            </td>
+            <td> 
+                <a href="/admin/users/post/{{ post.id }}">{{ post.title }}</a>
+            </td>
+            <td>{{ moment(post.timestamp).format('LL') }}</td>
+            <td><a href="/admin/users/post/edit/{{ post.id }}"><i class="fa fa-edit text-primary"></i></a> </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

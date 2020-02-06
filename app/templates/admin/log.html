@@ -1,0 +1,33 @@
+{% extends 'admin/admin_base.html' %}
+
+{% block title %}STComix Admin - View Log{% endblock %}
+
+{% block admin_header %}STComix Administration - View Log{% endblock %}
+
+{% block admin_content %}
+<div class="container">
+    <h4>
+    <a href="https://www.pythonanywhere.com/user/stcomix/files/var/log/stcomix.pythonanywhere.com.access.log">
+        Access Log
+    </a>
+    <br><br>
+    <a href="https://www.pythonanywhere.com/user/stcomix/files/var/log/stcomix.pythonanywhere.com.error.log">
+        Error log
+    </a>
+    <br><br>
+    <a href="https://www.pythonanywhere.com/user/stcomix/files/var/log/stcomix.pythonanywhere.com.server.log">
+        Server Log
+    </a>
+    <br><br>
+    </h4>
+    Note: <br><br>
+    <i>Access Log</i> contains all of the access of the website. They have really detailed description 
+    about the device and browser the user used.
+    <br><br>
+    <i>Error Log</i> contains all the errors that happened during the site is running. You can see 
+    a kind of error called <i>Traceback</i> about the error.
+    <br><br>
+    <i>Server Log</i> has all the very-detailed text about what the website server is doing. Because the 
+    website is hosted on the Linux OS, so it is based on Linux.
+</div>
+{% endblock %}

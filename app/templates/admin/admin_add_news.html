@@ -1,0 +1,11 @@
+{% extends 'admin/admin_base.html' %}
+
+{% block title %}STComix Admin - Edit News{% endblock %}
+
+{% block admin_header %}STComix Administration - Edit News{% endblock %}
+
+{% block admin_content %}
+<div class="container">
+    {{ wtf.quick_form(form) }}
+</div>
+{% endblock %}

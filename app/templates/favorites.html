@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %}Future Blog - 收藏{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>我的收藏</h1>
+</div>
+<div class="container">
+    <ul class="posts">
+        {% for favorite in favorites %}
+            {% set post = favorite.post %}
+            <li class="post">
+                <div class="post-thumbnail">
+                    <a href="{{ url_for('.user', username=post.author.username) }}">
+                        <img class="rounded-circle profile-thumbnail" src="{{ post.author.gravatar(size=40) }}">
+                    </a>
+                </div>
+                <div class="post-content">
+                    <div class="post-date">{{ moment(post.timestamp).fromNow() }}</div>
+                    <div class="post-author"><a href="{{ url_for('.user', username=post.author.username) }}">{{ post.author.username }}</a></div>
+                    <div class="post-body">
+                        {% if post.title != None %}
+                            <h1><a href="{{ url_for('.post', id=post.id) }}">{{ post.title }}</a></h1>
+                        {% endif %}
+                        {% if post.body_html %}
+                            {{ post.body_html | safe }}
+                        {% else %}
+                            {{ post.body }}
+                        {% endif %}
+                    </div>
+                    <div class="footer ml-auto">
+                        <br>
+                        {% if current_user.is_authenticated %}
+                        <a href="{{ url_for('.like', id=post.id) }}" class="btn btn-outline-danger btn-sm">
+                            <i class="fa fa-heart"></i> Like
+                            <span class="badge badge-light badge-pill">
+                                {{ post.likes.count() }}
+                            </span>
+                        </a>
+                        <a href="{{ url_for('.favorite', id=post.id) }}" class="btn btn-outline-warning btn-sm">
+                            <i class="fa fa-dropbox"></i> 添加到收藏
+                        </a>
+                        {% else %}
+                        <span class="btn btn-outline-danger">
+                            <i class="fa fa-heart"></i> 赞
+                            <span class="badge badge-light badge-pill">
+                                {{ post.likes.count() }}
+                            </span>
+                        </span>
+                        {% endif %}
+                    </div>
+                    <br>
+                    <div class="post-footer">
+                        {% if post.categories != None %}
+                        <a class="badge badge-secondary badge-pill" href="/category/{{ post.categories.id }}/">
+                            {{ post.categories.name }}
+                        </a>
+                        <br>
+                        {% endif %}
+                        <a href="{{ url_for('.post', id=post.id) }}" class="badge badge-primary">
+                            链接
+                        </a>
+                        <a href="{{ url_for('.post', id=post.id) }}#comments" class="badge badge-success">
+                            {{ post.comments.count() }} 条评论
+                        </a>
+                        {% if current_user == post.author %}
+                        <a href="{{ url_for('.edit', id=post.id) }}" class="badge badge-light">
+                            编辑
+                        </a>
+                        {% elif current_user.is_admin() %}
+                        <a href="{{ url_for('.edit', id=post.id) }}" class="badge badge-warning">
+                            编辑[管理员]
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

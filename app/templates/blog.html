@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "_macros.html" as macros %}
+
+{% block scripts %}
+{{ super() }}
+{{ pagedown.include_pagedown() }}
+{% endblock scripts %}
+
+{% block title %}Furture Blog{% endblock %}
+{% block page_content %}
+<div class="page-header">
+    <h1>Hello, {% if current_user.is_authenticated %}{{ current_user.username }}{% else %}陌生人{% endif %}!</h1>
+</div>
+<div>
+    {% if current_user.can(Permission.WRITE) %}
+    <h5>你在想什么？</h5><br>
+    <a href="/blog/category/" class="btn btn-light btn-sm">Choose a category</a><br>
+    {% if category!=None %}
+    <div class="badge badge-primary badge-pill">{{ category }}</div>
+    <br>
+    {% endif %}
+    <br>  
+    {{ wtf.quick_form(form) }}
+    <br><br>
+    <p class="text-muted">
+        注意：你需要先上传图片，因为你未发布的博客不会被保存
+    </p>
+    {{ wtf.quick_form(form2) }}
+    {% endif %}
+</div>
+<div class="post-tabs">
+    <ul class="nav nav-tabs">
+        <li{% if not show_followed %} class="nav-item active bg-primary rounded-top"{% endif %} class="nav-item bg-light rounded-top">
+            <a href="{{ url_for('.show_all') }}" {% if not show_followed %}class="nav-link text-white"{% else %}class="nav-link text-dark"{% endif %}>All</a></li>
+        {% if current_user.is_authenticated %}
+        &nbsp;
+        <li{% if show_followed %} class="nav-item active bg-primary rounded-top"{% endif %} class="nav-item bg-light rounded-top text-dark">
+            <a href="{{ url_for('.show_followed') }}" {% if show_followed %}class="nav-link text-white"{% else %}class="nav-link text-dark"{% endif %}>Followers</a></li>
+        {% endif %}
+    </ul>
+    {% include '_posts.html' %}
+</div>
+{% if pagination %}
+<div class="pagination">
+    {{ macros.pagination_widget(pagination, '.blog', title=form.title.data, body=form.body.data) }}
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "admin/admin_base.html" %}
+{% import "_macros.html" as macros %}
+
+{% block title %}Future Blog - 评论管理{% endblock %}
+
+{% block admin_content %}
+<div class="page-header">
+    <h1>评论管理</h1>
+</div>
+<p>共有{{ Comment.query.count() }}条评论</p>
+{% set moderate = True %}
+{% include '_comments.html' %}
+{% if pagination %}
+<div class="pagination">
+    {{ macros.pagination_widget(pagination, '.moderate') }}
+</div>
+{% endif %}
+{% endblock %}

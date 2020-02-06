@@ -1,0 +1,12 @@
+{% extends 'admin/admin_base.html' %}
+
+{% block title %}STComix Admin - Edit Roles{% endblock %}
+
+{% block admin_content %}
+<div class="container">
+    <div class="page-header">
+        <h1>更改用户角色</h1>
+    </div>
+    {{ wtf.quick_form(form) }}
+</div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Future Blog{% endblock %}
+
+{% block page_content %}
+<div class="card text-white text-center fade show {% if current_user.dark_theme %}bg-dark{% endif %}">
+  <img class="card-img" src="/static/img.jpg" alt="Background" style="height:600px" onerror="this.onerror(event.srcElement.src='../static/error.jpg')">
+  <div class="card-img-overlay card-sm text-center">
+    <div class="card-title m-5 text-center text-light">
+      <h1 class="text-light display-4 fade show">Blog. Never stops.</h1>
+    </div>
+    <div class="card-subtitle text-light">
+      Hello! 这里是<i>Future Blog</i>，你的博客家园 
+    <br><br>现在就想写博客？
+    <ins><a href="/register/" class="text-light">点击这里</a></ins>来注册一个账号！<br><br>
+    已经有了账号？<ins><a href="/blog" class="text-light">点击这里</a></ins>来撰写博客！
+    </div>
+  </div>
+</div><br>
+<hr><br>
+<div class="row">
+  <div class="col-9">
+    <h4>热门文章</h4>
+    <div class="col-10">
+    {% include '_posts.html' %}
+    </div>
+  </div>
+  <div class="col-3">
+    <h4>分类</h4>
+    <ul class="list-group {% if current_user.dark_theme %}bg-warning text-white{% else %}bg-white text-dark{% endif %}">
+      {% for category in categories %}
+      <a class="list-group-item {% if current_user.dark_theme %}bg-dark text-white{% else %}bg-white text-dark{% endif %} d-flex justify-content-between align-items-center" href="/category/{{ category.id }}/">
+        {{ category.name }}
+        <span class="badge badge-primary badge-pill">{{ category.posts.count() }}</span>
+      </a>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+<br>
+{% endblock %}

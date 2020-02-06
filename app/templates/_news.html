@@ -1,0 +1,20 @@
+<ul class="posts">
+    {% for news in newsall %}
+    <li class="post">
+        <div class="post-thumbnail">
+            <img class="img-rounded profile-thumbnail" src="{{ url_for('static', filename='icon.png') }}" style="size: 10px;">
+        </div>
+        <div class="post-content">
+            <div class="post-date"><i>{{ moment(news.timestamp).format('LL') }}</i></div>
+            <div class="post-author">系统</div>
+            <div class="post-body">
+                <h1>{{ news.title }}</h1>
+                {{ news.body | safe }}
+            </div>
+            <div class="post-footer">
+                <span><i><small class="text-muted">版本 {{ news.version }}</small></i></span>
+            </div>
+        </div>
+    </li>
+    {% endfor %}
+</ul>

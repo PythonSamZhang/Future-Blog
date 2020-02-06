@@ -1,0 +1,12 @@
+{% extends "admin/admin_base.html" %}
+
+{% block title %}确认移除{% endblock %}
+
+{% block admin_content %}
+<div class="container">
+    <div class="page-header">
+        <h1>确认移除用户</h1>
+    </div>
+    {{ wtf.quick_form(form) }}
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'admin/admin_base.html' %}
+{% import "_macros.html" as macros %}
+
+{% block title %}STComix Admin - Post{% endblock %}
+
+{% block admin_content %}
+<div class="page-header">
+    <h1>查看博客</h1>
+</div>
+<div class="container">
+    {% include 'admin/_admin_posts.html' %}
+    <h4 id="comments">Comments</h4>
+    {% include '_comments.html' %}
+    {% if pagination %}
+    <div class="pagination">
+        {{ macros.pagination_widget(pagination, '.admin_post_view', fragment='#comments', id=posts[0].id) }}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

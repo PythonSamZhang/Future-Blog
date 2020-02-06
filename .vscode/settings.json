@@ -1,0 +1,10 @@
+{
+    "python.pythonPath": "futureblogvenv/bin/python",
+    "editor.parameterHints": true,
+    "editor.quickSuggestions": {
+        "other": true,
+        "comments": true,
+        "strings": true
+    },
+    "git.ignoreLimitWarning": true
+}

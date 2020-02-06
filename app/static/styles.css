@@ -1,0 +1,237 @@
+        .profile-thumbnail {
+            position: absolute;
+        }
+        
+        .profile-header {
+            min-height: 260px;
+            margin-left: 280px;
+        }
+        
+        div.post-tabs {
+            margin-top: 16px;
+        }
+        
+        ul.posts {
+            list-style-type: none;
+            padding: 0px;
+            margin: 16px 0px 0px 0px;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        div.post-tabs ul.posts {
+            margin: 0px;
+            border-top: none;
+        }
+        
+        ul.posts li.post {
+            padding: 8px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        /*ul.posts li.post:hover {
+            background-color: #f0f0f0;
+        }*/
+        
+        ul div.post-date {
+            float: right;
+        }
+        
+        div.post-author {
+            font-weight: flat;
+        }
+        
+        div.post-thumbnail {
+            position: absolute;
+        }
+        
+        div.post-content {
+            margin-left: 48px;
+            min-height: 48px;
+        }
+        
+        div.post-footer {
+            text-align: right;
+        }
+        
+        ul.comments {
+            list-style-type: none;
+            padding: 0px;
+            margin: 16px 0px 0px 0px;
+        }
+        
+        ul.comments li.comment {
+            margin-left: 32px;
+            padding: 8px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        ul.comments li.comment:nth-child(1) {
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        ul.comments li.comment:hover {
+            background-color: #f0f0f0;
+        }
+        
+        div.comment-date {
+            float: right;
+        }
+        
+        div.comment-author {
+            font-weight: flat;
+        }
+        
+        div.comment-thumbnail {
+            position: absolute;
+        }
+        
+        div.comment-content {
+            margin-left: 48px;
+            min-height: 48px;
+        }
+        
+        div.comment-form {
+            margin: 16px 0px 16px 32px;
+        }
+        
+        div.pagination {
+            width: 100%;
+            text-align: right;
+            padding: 0px;
+            margin: 0px;
+        }
+        
+        div.flask-pagedown-preview {
+            margin: 10px 0px 10px 0px;
+            border: 1px solid #e0e0e0;
+            padding: 4px;
+        }
+        
+        div.flask-pagedown-preview h1 {
+            font-size: 140%;
+        }
+        
+        div.flask-pagedown-preview h2 {
+            font-size: 130%;
+        }
+        
+        div.flask-pagedown-preview h3 {
+            font-size: 120%;
+        }
+        
+        .post-body h1 {
+            font-size: 140%;
+        }
+        
+        .post-body h2 {
+            font-size: 130%;
+        }
+        
+        .post-body h3 {
+            font-size: 120%;
+        }
+
+        .post-body h4 {
+            font-size: 110%;
+        }
+        
+        .table.followers tr {
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .table.admin-users tr {
+            border-bottom: 1px solid #e0e0e0;
+            
+        }
+
+        a.link
+        {
+            color:#000000;
+            text-decoration:underline;
+        }
+
+
+        ul.news {
+            list-style-type: none;
+            padding: 0px;
+            margin: 16px 0px 0px 0px;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        div.news-tabs ul.news {
+            margin: 0px;
+            border-top: none;
+        }
+        
+        ul.news li.news {
+            padding: 8px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        ul.news li.news:hover {
+            background-color: #f0f0f0;
+        }
+        
+        ul div.news-date {
+            float: right;
+        }
+        div.news-thumbnail {
+            position: absolute;
+        }
+        div.news-author {
+            font-weight: flat;
+        }
+        div.post-content {
+            margin-left: 48px;
+            min-height: 48px;
+        }
+        
+        .page-header {
+            padding-bottom: 9px;
+            margin: 40px 0 20px;
+            border-bottom: 1px solid #eee;
+          }
+        
+        div.comment-body h1 {
+            font-size: 140%;
+        }
+        
+        div.comment-body h2 {
+            font-size: 130%;
+        }
+        
+        div.comment-body h3 {
+            font-size: 120%;
+        }
+
+        div.comment-body h4 {
+            font-size: 110%;
+        }
+
+        div.comment-content h1 {
+            font-size: 140%;
+        }
+        
+        div.comment-content h2 {
+            font-size: 130%;
+        }
+        
+        div.comment-content h3 {
+            font-size: 120%;
+        }
+
+        div.comment-content h4 {
+            font-size: 110%;
+        }
+        
+        .chatlist{margin-top:44px;padding:12px;}
+        .chatlist p.time{margin:0;text-align: center;}
+        .chatlist p.time span{padding:0 18px;display:inline-block;font-size:9pt;color: #fff;border-radius: 2px;background-color: #dcdcdc;}
+        .chatlist .chatout,.chatlist .chatin{margin:10px 0;}
+        .chatlist .chatout{text-align:right;}
+        .chatlist .chatout img{float:right;width:40px;height:40px;border-radius:50%;margin: 0 0 0 10px;}
+        .chatlist .chatout span{display: inline-block;position:relative;padding:10px;max-width: calc(100% - 90px);min-height: 40px;line-height:20px;font-size: 13px;word-break: break-all;border-radius: 4px;background-color: #0067F4;color:#fff;}
+        .chatlist .chatout span:before{content: " ";position: absolute;top: 9px;left: 100%;border: 6px solid transparent;border-left-color: #0067F4;}
+        .chatlist .chatin img{float:left;width:40px;height:40px;border-radius:50%;margin: 0 10px 0 0;}
+        .chatlist .chatin span{display: inline-block;position:relative;padding:10px;max-width: calc(100% - 90px);min-height: 40px;line-height:20px;font-size: 13px;word-break: break-all;border-radius: 4px;text-align: left;background-color: #fafafa;}
+        .chatlist .chatin span:before{content: " ";position: absolute;top: 9px;right: 100%;border: 6px solid transparent;border-right-color: #fafafa;}

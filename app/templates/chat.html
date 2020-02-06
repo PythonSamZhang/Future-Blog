@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Future Blog - 聊天{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>与{{ reciver.username }}聊天</h1>
+</div>
+<div class="container">
+        <div class="chatlist">
+            {% for chat in chats %}
+            {% if chat.author == reciver and chat.reciver == author %}
+                <div class="chatin">
+                    <a href="{{ url_for('.user', username=reciver.username) }}">
+                    <img src="{{ reciver.gravatar(size=40) }}">
+                    </a>
+                    <div class="post-body">
+                        <span>{{ chat.body | safe }}</span>
+                    </div>
+                </div>
+                <br>
+            {% elif chat.author == author and chat.reciver == reciver %}
+                <div class="chatout">
+                    <a href="{{ url_for('.user', username=author.username) }}">
+                        <img src="{{ author.gravatar(size=40) }}">
+                    </a>
+                    <div class="post-body">
+                        <span>{{ chat.body | safe }}</span>
+                    </div> 
+                </div>
+                <br>
+                {% endif %}
+    {% endfor %}
+    </div>
+    </div>
+    {{ wtf.quick_form(form) }}
+</div>
+{% endblock %}

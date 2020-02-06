@@ -1,0 +1,110 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+{% block scripts %}
+{{ super() }}
+{{ moment.include_moment() }}
+{% endblock %}
+
+{% block title %}Future Blog{% endblock %}
+
+{% block head %}
+{{ super() }}
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.css" rel="stylesheet">
+    <script src="https://cdn.ckeditor.com/ckeditor5/16.0.0/classic/ckeditor.js"></script>
+    <style>
+    a{
+      text-decoration:none;
+      color: {% if current_user.dark_theme %}black{% else %}black{% endif %};
+    }
+    a:hover{
+        text-decoration:none;
+        color: text-primary;
+    }
+  </style>
+{% endblock %}
+
+{% block navbar %}
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <nav class="navbar navbar-expand-lg {% if current_user.dark_theme %}bg-dark navbar-dark{% else %}bg-light navbar-light{% endif %}">
+          <a class="navbar-brand" href="/">
+            <img src="../static/favicon.png" width="30" height="30" class="d-inline-block" alt=""> &nbsp;&nbsp;&nbsp;Future Blog
+          </a>
+
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/">首页</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/blog">博客</a>
+        </li>
+      </ul>
+      <div class="container">
+      <ul class="nav navbar-nav navbar-right justify-content-end ml-auto">
+        {% if current_user.is_authenticated %}
+        &nbsp;&nbsp;
+        <form class="form-inline" action="{{ url_for('main.search') }}" method="GET">
+          <input class="form-control mr-sm-2" type="search" placeholder="搜索..." aria-label="Search" name="keyword" id="keyword">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
+        </form>
+        &nbsp;&nbsp;
+        <a href="/change-theme" class="nav-link">{% if current_user.dark_theme == True %}浅色主题{% else %}深色主题{% endif %}</a>
+            <li class="nav-item dropdown mr-lg-5">
+            <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown">Hello, {{ current_user.username }}</a>
+              <ul class="dropdown-menu {% if current_user.dark_theme %}bg-dark{% endif %} fade">
+                  <a class="dropdown-item {% if current_user.dark_theme %}bg-dark text-light{% endif %}" href="{{ url_for('main.user', username=current_user.username) }}">个人资料</a>
+                  {% if current_user.can(Permission.MODERATE) %}
+                  <a class="dropdown-item {% if current_user.dark_theme %}bg-dark text-light{% endif %}" href="{{ url_for('main.moderate') }}">管理评论</a>
+                  {% endif %}
+                  {% if current_user.can(Permission.ADMIN) %}
+                  <a class="dropdown-item {% if current_user.dark_theme %}bg-dark text-light{% endif %}" href="{{ url_for('main.admin') }}">管理网站</a>
+                  {% endif %}
+                  {% if current_user.unread != 0 %}
+                  <span class="dropdown-item {% if current_user.dark_theme %}bg-dark text-light{% endif %}">消息<span class="badge badge-primary">{{ current_user.unread }}</span></span>
+                  {% endif %}
+                  <a class="dropdown-item {% if current_user.dark_theme %}bg-dark text-light{% endif %}" href="{{ url_for('main.logout') }}">登出</a>
+              </ul>
+            </li>
+        {% else %}
+        <a class="nav-link" href="{{ url_for('main.login') }}">登录</a>  <a class="nav-link" href="{{ url_for('main.register') }}">注册</a>
+        {% endif %}
+    </ul>
+    </div>
+  </ul>
+
+</p>
+</nav>
+
+<br>
+{% endblock %}
+
+{% block content %}
+<body class="{% if current_user.dark_theme %}bg-warning text-dark{% else %}bg-white text-dark{% endif %}">
+    <div class="container">
+    {% for message in get_flashed_messages() %}
+    <div class="alert {% if current_user.dark_theme %}bg-dark text-light{% else %}alert-warning{% endif %} fade in show alert-dismissible">
+        <button type="button" class="close text-light" data-dismiss="alert">&times;</button>
+        {{ message }}<br>
+    </div>
+    {% endfor %}
+        <div class="container">
+        {% block page_content %}
+        {% endblock %}
+        </div>
+    </div>
+    <footer class="container-fluid py-3 align-bottom {% if current_user.dark_theme %}bg-dark{% else %}bg-light{% endif %}">
+        <p class="text-center"></p>
+        <p class="{% if current_user.dark_theme %}text-white{% else %}text-dark{% endif %} text-center">Copyright &copy; 2020 | Powered by Future Blog<br>All rights reserved.</p>
+        <p class="{% if current_user.dark_theme %}text-white{% else %}text-dark{% endif %} text-center"></p>
+    </footer>
+    </body>
+{% endblock %}

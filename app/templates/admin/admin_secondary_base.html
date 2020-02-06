@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}{% endblock %}
+
+{% block page_content %}
+<div class="container-fluid">
+    <h2>{% block admin_header %}{% endblock %}</h2>
+    <a href="{{ last_page }}" class="btn btn-light">
+        <i class="glyphicon glyphicon-chevron-left"></i>
+        Back
+    </a>
+    <br><br>
+    {% block admin_content %}{% endblock %}
+</div>
+{% endblock %}
