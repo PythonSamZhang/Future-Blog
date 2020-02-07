@@ -93,7 +93,7 @@
     <div class="container">
     {% for message in get_flashed_messages() %}
     <div class="alert {% if current_user.dark_theme %}bg-dark text-light{% else %}alert-warning{% endif %} fade in show alert-dismissible">
-        <button type="button" class="close text-light" data-dismiss="alert">&times;</button>
+        <button type="button" class="close {% if current_user.dark_theme %}text-light{% endif %}" data-dismiss="alert">&times;</button>
         {{ message }}<br>
     </div>
     {% endfor %}
