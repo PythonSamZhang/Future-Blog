@@ -18,6 +18,7 @@ def before_request():
 
 @app.cli.command()
 def deploy():
+    upgrade()
     Role.insert_roles()
     Category.default_categories()
     u = User(username='root', password='rootroot', unread=0, role=Role.query.filter_by(name='Admin').first(), email='adminemail@example.com')
