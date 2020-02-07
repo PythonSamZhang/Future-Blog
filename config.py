@@ -23,7 +23,7 @@ class DevelopmentConfig(Config):
 
 class ProductionConfig(Config):
     DEGUG = False
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or 'sqlite:///' + os.path.join(basedir, 'data-dev.sqlite')
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or 'sqlite:///' + os.path.join(basedir, 'data-pro.sqlite')
 
 config = {
     'development': DevelopmentConfig,
